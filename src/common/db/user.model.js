@@ -1,0 +1,22 @@
+import{model,Schema} from "mongoose";
+
+const schema = new Schema(
+    {
+        userName:{type:String,required:true,minLength:2 ,maxLength:100,trim:true},
+        email:{type:String,required:true,unique:true},
+        password:{type:String,required:function()
+            {
+                return this.provider === 'local';
+            }
+            },
+        provider:{type:String ,enum:['google','facebook','local'],default:'local'},
+        isVerified:{type:Boolean,default:false},
+        isDeleted:{type:Boolean,default:false},
+        profilePicPath:{type:String,required:false}
+
+    },
+    {
+        timestamps:true,
+    })
+
+export const User=model('User',schema);
