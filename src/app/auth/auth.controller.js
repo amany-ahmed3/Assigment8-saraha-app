@@ -41,8 +41,8 @@ export async function sendOtp (req, res, next){
 export async function login (req, res, next){
     try{
         const {email,password}= req.body;
-      const user =  await authService.login(email,password);
-        res.status(201).json({message:"OK", success:true,data:user });
+      const token =  await authService.login(email,password);
+        res.status(201).json({message:"OK", success:true,data:token });
 
     }catch(err){
         next(err);

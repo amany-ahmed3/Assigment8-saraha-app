@@ -3,8 +3,8 @@ import * as authRepository from '../auth/auth.repository.js';
 import bcrypt from 'bcryptjs';
 import {sendEmail} from "../../common/email/nodemedailer.js";
 import crypto from "node:crypto";
-import {toMs} from "../../common/utils/time.js";
-
+import {toMs, toSeconds} from "../../common/utils/time.js";
+import jwt from 'jsonwebtoken';
 
 export async function register(userName,email,password) {
     // 1- check if user exist
@@ -67,7 +67,7 @@ export async function sendOtp(){
    await sendEmail(email,'new OTP',`<h3>your new OTP is ${code}</h3>`);
 }
 
-// لسه مطبقتش ال tokens هناا
+
 export async function login (email , password){
     // 1- check email exists
   const user =  await userRepository.findUserByEmail(email);
@@ -77,11 +77,13 @@ export async function login (email , password){
    const match = await  bcrypt.compare(password,user.password);
    if(!match) throw new Error ('Invalid Credentials');
     // 3- return user
-    return{
+    const payload = {
         name:user.userName,
         email:email,
-        id:user._id
+        sub:user._id
     }
+ const accessToken = jwt.sign(payload,'hdkfnvdifnklsvfgdluwensnfbdhdbcm' , {expires:toSeconds(1,'h')});
+    return accessToken;
 
-
+    // logout<< remove tokens from cookies and local storage
 }
