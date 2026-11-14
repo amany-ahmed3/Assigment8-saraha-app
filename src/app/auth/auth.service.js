@@ -5,7 +5,7 @@ import {sendEmail} from "../../common/email/nodemedailer.js";
 import crypto from "node:crypto";
 import {toMs, toSeconds} from "../../common/utils/time.js";
 import jwt from 'jsonwebtoken';
-import {config} from "../../confing/confing.js";
+import {config} from "../../config/config.js";
 
 export async function register(userName,email,password) {
     // 1- check if user exist
@@ -84,7 +84,7 @@ export async function login (email , password){
         email:email,
         sub:user._id
     }
- const accessToken = jwt.sign(payload,confing.jwtSecret , {expires:toSeconds(1,'h')});
+ const accessToken = jwt.sign(payload,config.jwtSecret , {expires:toSeconds(1,'h')});
     return accessToken;
 
     // logout<< remove tokens from cookies and local storage

@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import {authRouter} from "./app/auth/auth.route.js";
 import {messageRouter} from "./app/message/message.route.js";
 import {userRouter} from "./app/user/user.route.js";
-import {config} from "./confing/confing.js";
+import {config} from "./config/config.js";
 
 const app = express();
 

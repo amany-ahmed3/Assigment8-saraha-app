@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import {config} from "../../confing/confing.js";
+import {config} from "../../config/config.js";
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
