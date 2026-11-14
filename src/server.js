@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import {authRouter} from "./app/auth/auth.route.js";
 import {messageRouter} from "./app/message/message.route.js";
 import {userRouter} from "./app/user/user.route.js";
-
+import {config} from "./confing/confing.js";
 
 const app = express();
 
@@ -18,8 +18,8 @@ app.use('api/user',userRouter);
 app.use((error ,req, res, next )=>{
     res.json({message: error.message ,success:false});
 })
-const server= app.listen(3000,()=>{
-    console.log("Server running on port 3000");
+const server= app.listen(config.port,()=>{
+    console.log(`Server running on port ${config.port}`);
 });
 
 const shutdown = async ()=>{
