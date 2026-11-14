@@ -21,7 +21,9 @@ export async function register(userName,email,password) {
 
     // omit password >> delete password from response
     delete createdUser.password;
+    createdUser.password = undefined;
     return createdUser;
+
     // 5- generate OTP and save into DB
     const code = crypto.randomInt(100000, 999999);
   await authRepository.createOtp(code,createdUser._id , new Date(Date.now() + toMs(15,'m')))
@@ -32,9 +34,8 @@ export async function register(userName,email,password) {
         "Verify your account",
         `<h3>Your code to verify your account is ${code}</h3>`)
 
-    delete  createdUser.password;
-    createdUser.password = undefined;
-    return createdUser;
+
+
 }
 
 export async function verifyAccount(code,email){
