@@ -3,8 +3,8 @@ import {User} from '../../common/db/user.model.js';
 export async function findUserByEmail(email){
     return  User.findOne({email:email});
 }
-export async function createUser(userName,email,hashedPassword){
-      const user = new User({userName:userName,email:email,password:hashedPassword});
+export async function createUser(data){
+      const user = new User(data);
       return await user.save();
 }
 

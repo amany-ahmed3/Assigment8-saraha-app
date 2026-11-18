@@ -49,3 +49,16 @@ export async function login (req, res, next){
 
     }
 }
+
+
+export async function loginWithGoogle (req, res, next){
+    try{
+        const {idToken}= req.body;
+        const token =  await authService.loginWithGoogle(idToken);
+        res.status(201).json({message:"OK", success:true,data:token });
+
+    }catch(err){
+        next(err);
+
+    }
+}

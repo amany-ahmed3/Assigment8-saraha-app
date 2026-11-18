@@ -19,5 +19,8 @@ export const config = {
     dbUrl: process.env.DB_URL,
     jwtSecret: process.env.JWT_SECRET,
     emailUser: process.env.EMAIL_USER,
-    emailPass: process.env.EMAIL_PASS
+    emailPass: process.env.EMAIL_PASS,
+    clientId:process.env.CLIENT_ID ,      // audience when verifyIdToken from Google Cloud.
+    redisUrl:process.env.REDIS_URL,
+    serverFE:process.env.SERVER_FE
 };
