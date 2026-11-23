@@ -1,7 +1,10 @@
 import * as userRepository from'../user/user.repository.js';
 // import * as authRepository from '../auth/auth.repository.js';
 import {sendEmail} from "../../common/email/nodemedailer.js";
-import {comparePassword, generateAccessToken, generateOTP, hashPassword,toMs,toSeconds} from "../../common/utils/index.js";
+import {comparePassword,
+       generateAccessToken,
+       generateOTP,
+       hashPassword,toMs,toSeconds,verifyIdToken} from "../../common/utils/index.js";
 import{UserAlreadyExists,
     InvalidCredentials,
     UserNotVerified,
@@ -83,7 +86,7 @@ export async function sendOtp(email){
     await cache.set(`otp:${email}`,code,toSeconds(5,'m'));
 
     // 4- send Email
-   await sendEmail(email,'new OTP',`<h3>your new OTP is ${code}</h3>`);
+  // await sendEmail(email,'new OTP',`<h3>your new OTP is ${code}</h3>`);
 }
 
 

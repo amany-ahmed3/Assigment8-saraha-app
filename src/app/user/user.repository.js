@@ -12,3 +12,7 @@ export async function updateUser (userId,data){
 
    return await User.findOneAndUpdate({_id:userId}, data , {returnDocument:"after"});
 }
+
+export async function findUserById(userId){
+    return await User.findOne({_id:userId});
+}

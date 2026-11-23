@@ -13,11 +13,13 @@ const app = express();
 
 app.use(express.json());
 
+
 app.use(cors({origin:[config.serverFE]}));
+
 
 app.use('/api/auth',authRouter);
 app.use('/api/message',messageRouter);
-app.use('api/user',userRouter);
+app.use('/api/user',userRouter);
 
 
 app.use(globalErrorHandler);
