@@ -7,4 +7,4 @@ export const messageRouter=Router();
 
 messageRouter.post('/send-anonymous',validationMiddleware(createMessageDto),messageController.sendMessage);
 messageRouter.post('/send-public',authGuard,messageController.sendMessage);
-messageRouter.get('/',messageController.getMessages)
+messageRouter.get('/',authGuard,messageController.getMessages)

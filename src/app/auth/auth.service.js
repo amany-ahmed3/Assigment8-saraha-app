@@ -86,7 +86,7 @@ export async function sendOtp(email){
     await cache.set(`otp:${email}`,code,toSeconds(5,'m'));
 
     // 4- send Email
-  // await sendEmail(email,'new OTP',`<h3>your new OTP is ${code}</h3>`);
+  await sendEmail(email,'new OTP',`<h3>your new OTP is ${code}</h3>`);
 }
 
 
@@ -138,4 +138,5 @@ export async function loginWithGoogle(idToken){
     return  generateAccessToken({sub:createdUser._id , email:createdUser.email});
 
 }
+
 
